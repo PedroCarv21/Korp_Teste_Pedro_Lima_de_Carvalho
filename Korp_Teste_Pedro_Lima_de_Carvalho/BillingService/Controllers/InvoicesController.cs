@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using BillingService.Data;
 using BillingService.Models;
+using BillingService.DTOs;
 
 namespace BillingService.Controllers
 {
@@ -58,6 +59,33 @@ namespace BillingService.Controllers
             return _context.Invoices.Any()
                 ? _context.Invoices.Max(i => i.Number) + 1
                 : 1;
+        }
+
+        [HttpPost("{id}/items")]
+        public async Task<IActionResult> AddItem(int id, AddItemRequest request)
+        {
+            var invoice = await _context.Invoices
+                .Include(i => i.Items)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (invoice == null)
+                return NotFound("Invoice not found");
+
+            if (invoice.Status != "Open")
+                return BadRequest("Cannot add items to a closed invoice");
+
+            var item = new InvoiceItem
+            {
+                ProductId = request.ProductId,
+                Quantity = request.Quantity,
+                InvoiceId = invoice.Id
+            };
+
+            invoice.Items.Add(item);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(invoice);
         }
     }
 }
