@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Korp_Teste_Pedro_Lima_de_Carvalho.Data;
+﻿using Korp_Teste_Pedro_Lima_de_Carvalho.Data;
 using Korp_Teste_Pedro_Lima_de_Carvalho.Models;
+using Korp_Teste_Pedro_Lima_de_Carvalho.Requests;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
 {
@@ -66,6 +67,24 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPut("{id}/decrease")]
+        public async Task<IActionResult> DecreaseStock(int id, [FromBody] DecreaseStockRequest request)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+                return NotFound("Product not found");
+
+            if (product.Stock < request.Quantity)
+                return BadRequest("Insufficient stock");
+
+            product.Stock -= request.Quantity;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(product);
         }
     }
 }

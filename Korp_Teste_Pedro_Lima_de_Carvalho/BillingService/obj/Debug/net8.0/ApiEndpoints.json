@@ -67,6 +67,22 @@
   },
   {
     "ContainingType": "BillingService.Controllers.InvoicesController",
+    "Method": "CloseInvoice",
+    "RelativePath": "api/Invoices/{id}/close",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BillingService.Controllers.InvoicesController",
     "Method": "AddItem",
     "RelativePath": "api/Invoices/{id}/items",
     "HttpMethod": "POST",
@@ -81,6 +97,53 @@
       {
         "Name": "request",
         "Type": "BillingService.DTOs.AddItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BillingService.Controllers.InvoicesController",
+    "Method": "UpdateItem",
+    "RelativePath": "api/Invoices/{invoiceId}/items/{itemId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BillingService.Requests.UpdateItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BillingService.Controllers.InvoicesController",
+    "Method": "RemoveItem",
+    "RelativePath": "api/Invoices/{invoiceId}/items/{itemId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BillingService.Data;
 using BillingService.Models;
 using BillingService.DTOs;
+using BillingService.Requests;
 
 namespace BillingService.Controllers
 {
@@ -11,10 +12,12 @@ namespace BillingService.Controllers
     public class InvoicesController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly HttpClient _httpClient;
 
-        public InvoicesController(AppDbContext context)
+        public InvoicesController(AppDbContext context, IHttpClientFactory httpClientFactory)
         {
             _context = context;
+            _httpClient = httpClientFactory.CreateClient();
         }
 
         [HttpGet]
@@ -86,6 +89,91 @@ namespace BillingService.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(invoice);
+        }
+
+        [HttpPost("{id}/close")]
+        public async Task<IActionResult> CloseInvoice(int id)
+        {
+            var invoice = await _context.Invoices
+                .Include(i => i.Items)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (invoice == null)
+                return NotFound("Invoice not found");
+
+            if (invoice.Status != "Open")
+                return BadRequest("Invoice already closed");
+
+            foreach (var item in invoice.Items)
+            {
+                var response = await _httpClient.PutAsJsonAsync(
+                    $"https://localhost:7076/api/products/{item.ProductId}/decrease",
+                    new { quantity = item.Quantity });
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    return BadRequest($"Stock service error: {errorMessage}");
+                }
+            }
+
+            invoice.Status = "Closed";
+
+            await _context.SaveChangesAsync();
+            return Ok(invoice);
+        }
+
+        [HttpPut("{invoiceId}/items/{itemId}")]
+        public async Task<IActionResult> UpdateItem(int invoiceId, int itemId, UpdateItemRequest request)
+        {
+            var invoice = await _context.Invoices
+                .Include(i => i.Items)
+                .FirstOrDefaultAsync(i => i.Id == invoiceId);
+
+            if (invoice == null)
+                return NotFound("Invoice not found");
+
+            if (invoice.Status != "Open")
+                return BadRequest("Cannot update items of a closed invoice");
+
+            var item = invoice.Items.FirstOrDefault(i => i.Id == itemId);
+
+            if (item == null)
+                return NotFound("Item not found");
+
+            if (request.Quantity <= 0)
+                return BadRequest("Quantity must be greater than zero");
+
+            item.Quantity = request.Quantity;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(invoice);
+        }
+
+        [HttpDelete("{invoiceId}/items/{itemId}")]
+        public async Task<IActionResult> RemoveItem(int invoiceId, int itemId)
+        {
+            var invoice = await _context.Invoices
+                .Include(i => i.Items)
+                .FirstOrDefaultAsync(i => i.Id == invoiceId);
+
+            if (invoice == null)
+                return NotFound("Invoice not found");
+
+            if (invoice.Status != "Open")
+                return BadRequest("Cannot remove items from a closed invoice");
+
+            var item = invoice.Items.FirstOrDefault(i => i.Id == itemId);
+
+            if (item == null)
+                return NotFound("Item not found");
+
+            _context.InvoiceItems.Remove(item);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -109,6 +109,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "Method": "DecreaseStock",
+    "RelativePath": "api/Products/{id}/decrease",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Korp_Teste_Pedro_Lima_de_Carvalho.Requests.DecreaseStockRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

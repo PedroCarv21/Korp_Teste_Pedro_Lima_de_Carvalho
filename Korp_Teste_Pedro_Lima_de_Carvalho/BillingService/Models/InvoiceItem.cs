@@ -6,10 +6,11 @@ namespace BillingService.Models
     {
         public int Id { get; set; }
 
-        public int ProductId { get; set; } // vem do outro microserviço
+        public int ProductId { get; set; }
         public int Quantity { get; set; }
 
         public int InvoiceId { get; set; }
+
         [JsonIgnore]
         public Invoice Invoice { get; set; }
     }
