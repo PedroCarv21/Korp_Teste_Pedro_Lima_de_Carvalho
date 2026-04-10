@@ -72,6 +72,11 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
         [HttpPut("{id}/decrease")]
         public async Task<IActionResult> DecreaseStock(int id, [FromBody] DecreaseStockRequest request)
         {
+            if (request.Quantity == 999)
+            {
+                return StatusCode(500, "Simulated stock service failure");
+            }
+
             var product = await _context.Products.FindAsync(id);
 
             if (product == null)

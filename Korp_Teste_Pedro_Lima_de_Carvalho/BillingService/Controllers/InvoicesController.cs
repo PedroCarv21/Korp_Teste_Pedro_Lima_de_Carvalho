@@ -113,7 +113,7 @@ namespace BillingService.Controllers
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorMessage = await response.Content.ReadAsStringAsync();
-                    return BadRequest($"Stock service error: {errorMessage}");
+                    return StatusCode((int)response.StatusCode, $"Stock service error: {errorMessage}");
                 }
             }
 
