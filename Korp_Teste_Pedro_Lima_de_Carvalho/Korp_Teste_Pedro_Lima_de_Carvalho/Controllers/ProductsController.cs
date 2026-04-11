@@ -47,7 +47,7 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
         public async Task<IActionResult> UpdateProduct(int id, Product product)
         {
             if (id != product.Id)
-                return BadRequest();
+                return BadRequest("ID mismatch");
 
             _context.Entry(product).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -77,19 +77,30 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
                 return StatusCode(500, "Simulated stock service failure");
             }
 
-            var product = await _context.Products.FindAsync(id);
+            if (request.Quantity <= 0)
+            {
+                return BadRequest("Quantity must be greater than zero");
+            }
 
-            if (product == null)
+            var productExists = await _context.Products.AnyAsync(p => p.Id == id);
+
+            if (!productExists)
+            {
                 return NotFound("Product not found");
+            }
 
-            if (product.Stock < request.Quantity)
+            var affectedRows = await _context.Database.ExecuteSqlRawAsync(
+                "UPDATE Products SET Stock = Stock - {0} WHERE Id = {1} AND Stock >= {0}",
+                request.Quantity, id);
+
+            if (affectedRows == 0)
+            {
                 return BadRequest("Insufficient stock");
+            }
 
-            product.Stock -= request.Quantity;
+            var updatedProduct = await _context.Products.FindAsync(id);
 
-            await _context.SaveChangesAsync();
-
-            return Ok(product);
+            return Ok(updatedProduct);
         }
     }
 }
