@@ -1,20 +1,22 @@
-<h2>Insert a new Product</h2>
+<div class="card">
+  <h2>Insert a new Product</h2>
 
-<form (ngSubmit)="save()">
-  <div>
-    <label>Code:</label>
-    <input [(ngModel)]="product.code" name="code" required>
-  </div>
+  <form (ngSubmit)="save()">
+    <div>
+      <label>Code:</label><br>
+      <input [(ngModel)]="product.code" name="code" required>
+    </div>
 
-  <div>
-    <label>Description:</label>
-    <input [(ngModel)]="product.description" name="description" required>
-  </div>
+    <div>
+      <label>Description:</label><br>
+      <input [(ngModel)]="product.description" name="description" required>
+    </div>
 
-  <div>
-    <label>Stock:</label>
-    <input type="number" [(ngModel)]="product.stock" name="stock" required>
-  </div>
+    <div>
+      <label>Stock:</label><br>
+      <input type="number" [(ngModel)]="product.stock" name="stock" required>
+    </div>
 
-  <button type="submit">Save</button>
-</form>
+    <button type="submit">Save</button>
+  </form>
+</div>
