@@ -1,0 +1,30 @@
+<h2>Invoices</h2>
+
+<button (click)="createInvoice()">Create Invoice</button>
+
+<br><br>
+
+<h3>Add Item</h3>
+
+<input [(ngModel)]="selectedInvoiceId" placeholder="Invoice ID" type="number">
+<input [(ngModel)]="productId" placeholder="Product ID" type="number">
+<input [(ngModel)]="quantity" placeholder="Quantity" type="number">
+
+<button (click)="addItem()">Add Item</button>
+
+<br><br>
+
+<table border="1">
+  <tr>
+    <th>Number</th>
+    <th>Status</th>
+  </tr>
+
+   <tr *ngFor="let i of invoices">
+      <td>{{ i.number }}</td>
+      <td>{{ i.status }}</td>
+      <td>
+        <button (click)="closeInvoice(i.id)">Close</button>
+      </td>
+    </tr>
+</table>
