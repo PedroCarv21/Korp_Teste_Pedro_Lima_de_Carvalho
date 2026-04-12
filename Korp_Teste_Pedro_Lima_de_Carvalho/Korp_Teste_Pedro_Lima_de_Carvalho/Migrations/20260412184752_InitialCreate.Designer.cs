@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Korp_Teste_Pedro_Lima_de_Carvalho.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260411175320_RemoveRowVersion")]
-    partial class RemoveRowVersion
+    [Migration("20260412184752_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
 
                     b.ToTable("Products");
                 });

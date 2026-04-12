@@ -35,6 +35,9 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
                     b.ToTable("Products");
                 });
 #pragma warning restore 612, 618

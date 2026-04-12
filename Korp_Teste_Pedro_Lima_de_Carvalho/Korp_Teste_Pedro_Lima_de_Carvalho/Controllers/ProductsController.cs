@@ -37,10 +37,17 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+                return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Product code must be unique");
+            }
         }
 
         [HttpPut("{id}")]

@@ -21,23 +21,44 @@ export class ProductFormComponent {
 
   constructor(private productService: ProductService) {}
 
-  save() {
+  save(form: any) {
+
+    if (form.invalid) {
+      alert('Fill all required fields!');
+      return;
+    }
+
     if (this.selectedProduct) {
+
       const updatedProduct = {
         ...this.selectedProduct,
         ...this.product
       };
 
-      this.productService.update(updatedProduct).subscribe(() => {
-        alert('Product updated!');
-        this.resetForm();
+      this.productService.update(updatedProduct).subscribe({
+        next: () => {
+          alert('Product updated!');
+          this.resetForm();
+          window.location.reload();
+        },
+        error: (err) => {
+          alert(err.error);
+        }
       });
 
     } else {
-      this.productService.create(this.product).subscribe(() => {
-        alert('Product created!');
-        this.resetForm();
+
+      this.productService.create(this.product).subscribe({
+        next: () => {
+          alert('Product created!');
+          this.resetForm();
+          window.location.reload();
+        },
+        error: (err) => {
+          alert(err.error);
+        }
       });
+
     }
   }
 

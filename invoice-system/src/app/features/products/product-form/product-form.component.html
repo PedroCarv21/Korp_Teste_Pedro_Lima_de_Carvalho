@@ -1,15 +1,21 @@
 <div class="card">
   <h2>Insert a new Product</h2>
 
-  <form (ngSubmit)="save()">
+  <form #form="ngForm" (ngSubmit)="save(form)">
     <div>
       <label>Code:</label><br>
-      <input [(ngModel)]="product.code" name="code" required>
+      <input [(ngModel)]="product.code" name="code" required #code="ngModel">
+      <div *ngIf="code.invalid && code.touched" style="color:red;">
+        Code is required
+      </div>
     </div>
 
     <div>
       <label>Description:</label><br>
-      <input [(ngModel)]="product.description" name="description" required>
+      <input [(ngModel)]="product.description" name="description" required #desc="ngModel">
+      <div *ngIf="desc.invalid && desc.touched" style="color:red;">
+        Description is required
+      </div>
     </div>
 
     <div>

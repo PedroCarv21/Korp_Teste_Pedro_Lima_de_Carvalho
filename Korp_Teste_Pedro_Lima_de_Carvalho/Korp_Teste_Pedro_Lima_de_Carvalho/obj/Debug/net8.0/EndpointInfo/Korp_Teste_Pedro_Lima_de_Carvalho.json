@@ -289,6 +289,10 @@
         "additionalProperties": false
       },
       "Product": {
+        "required": [
+          "code",
+          "description"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -296,12 +300,12 @@
             "format": "int32"
           },
           "code": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "stock": {
             "type": "integer",

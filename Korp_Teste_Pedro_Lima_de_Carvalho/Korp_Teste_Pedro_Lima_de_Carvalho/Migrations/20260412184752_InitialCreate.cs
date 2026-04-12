@@ -24,6 +24,12 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_Code",
+                table: "Products",
+                column: "Code",
+                unique: true);
         }
 
         /// <inheritdoc />
