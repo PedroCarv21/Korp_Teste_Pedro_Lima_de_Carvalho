@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Korp_Teste_Pedro_Lima_de_Carvalho")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74067af8976cfe63296b074b2da603562c258f42")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0d415751299df2a81ca4e14931d1bbc65ca30c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Korp_Teste_Pedro_Lima_de_Carvalho")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Korp_Teste_Pedro_Lima_de_Carvalho")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

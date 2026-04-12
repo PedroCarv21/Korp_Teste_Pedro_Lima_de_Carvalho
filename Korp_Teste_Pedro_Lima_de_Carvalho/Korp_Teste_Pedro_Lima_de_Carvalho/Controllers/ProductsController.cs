@@ -54,12 +54,19 @@ namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
         public async Task<IActionResult> UpdateProduct(int id, Product product)
         {
             if (id != product.Id)
-                return BadRequest("ID mismatch");
+                return BadRequest();
 
             _context.Entry(product).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
 
-            return NoContent();
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok(product);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Product code must be unique");
+            }
         }
 
         [HttpDelete("{id}")]
