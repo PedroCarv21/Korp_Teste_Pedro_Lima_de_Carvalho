@@ -77,6 +77,12 @@ namespace BillingService.Controllers
             if (invoice.Status != "Open")
                 return BadRequest("Cannot add items to a closed invoice");
 
+            var response = await _httpClient.GetAsync(
+                $"https://localhost:7076/api/products/{request.ProductId}");
+
+            if (!response.IsSuccessStatusCode)
+                return NotFound("Product not found");
+
             var item = new InvoiceItem
             {
                 ProductId = request.ProductId,

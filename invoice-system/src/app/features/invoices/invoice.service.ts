@@ -34,11 +34,8 @@ export class InvoiceService {
     return this.http.post<Invoice>(this.apiUrl, {});
   }
 
-  addItem(invoiceId: number, productId: number, quantity: number) {
-    return this.http.post(`${this.apiUrl}/${invoiceId}/items`, {
-      productId,
-      quantity
-    });
+  addItem(invoiceId: number, request: any) {
+    return this.http.post(`${this.apiUrl}/${invoiceId}/items`, request);
   }
 
   close(invoiceId: number) {

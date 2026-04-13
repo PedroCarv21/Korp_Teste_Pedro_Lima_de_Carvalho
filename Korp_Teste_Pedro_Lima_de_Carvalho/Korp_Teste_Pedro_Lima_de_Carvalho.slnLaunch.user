@@ -3,7 +3,7 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "Korp_Teste_Pedro_Lima_de_Carvalho\\Korp_Teste_Pedro_Lima_de_Carvalho.csproj",
+        "Path": "Korp_Teste_Pedro_Lima_de_Carvalho\\ProductService.csproj",
         "Action": "Start"
       },
       {

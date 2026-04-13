@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class InvoiceListComponent implements OnInit {
 
   selectedInvoiceId!: number;
+  loading = false;
   productId!: number;
   quantity!: number;
   invoices: Invoice[] = [];
@@ -34,24 +35,53 @@ export class InvoiceListComponent implements OnInit {
     });
   }
 
-  addItem() {
-    this.invoiceService
-      .addItem(this.selectedInvoiceId, this.productId, this.quantity)
-      .subscribe(() => {
+  addItem(form: any) {
+
+    if (form.invalid) {
+      alert('Fill all required fields!');
+      return;
+    }
+
+    const request = {
+      productId: this.productId,
+      quantity: this.quantity
+    };
+
+    this.invoiceService.addItem(this.selectedInvoiceId, request).subscribe({
+      next: () => {
         alert('Item added!');
-        this.loadInvoices();
-      });
+        window.location.reload();
+      },
+      error: (err) => {
+        const message = err.error || 'Unexpected error';
+        alert(message);
+      }
+    });
   }
 
-  closeInvoice(id: number) {
-    this.invoiceService.close(id).subscribe({
+  loadingInvoiceId: number | null = null;
+
+  closeInvoice(invoice: any) {
+    if (invoice.status !== 'Open') {
+      alert('Only open invoices can be printed');
+      return;
+    }
+
+    this.loadingInvoiceId = invoice.id;
+
+    this.invoiceService.close(invoice.id).subscribe({
       next: () => {
         alert('Invoice closed!');
         this.loadInvoices();
+        this.loadingInvoiceId = null;
       },
       error: (err) => {
+        this.loadingInvoiceId = null;
         alert(err.error);
       }
     });
   }
+
+
+
 }

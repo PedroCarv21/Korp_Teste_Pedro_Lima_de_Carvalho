@@ -1,30 +1,70 @@
+<div class="card">
+  <h2>Add Item to Invoice</h2>
+
+  <form #form="ngForm" (ngSubmit)="addItem(form)">
+
+    <input
+      [(ngModel)]="selectedInvoiceId"
+      name="invoiceId"
+      placeholder="Invoice ID"
+      type="number"
+      required
+      #invoiceId="ngModel"><br>
+
+    <div *ngIf="invoiceId.invalid && invoiceId.touched" style="color:red;">
+      Invoice ID is required
+    </div>
+
+    <input
+      [(ngModel)]="productId"
+      name="productId"
+      placeholder="Product ID"
+      type="number"
+      required
+      #productIdField="ngModel"><br>
+
+    <div *ngIf="productIdField.invalid && productIdField.touched" style="color:red;">
+      Product ID is required
+    </div>
+
+    <input
+      [(ngModel)]="quantity"
+      name="quantity"
+      placeholder="Quantity"
+      type="number"
+      required
+      min="1"
+      #quantityField="ngModel"><br>
+
+    <div *ngIf="quantityField.invalid && quantityField.touched" style="color:red;">
+      Quantity is required
+    </div>
+
+    <button type="submit">Add Item</button>
+
+  </form>
+</div>
 <h2>Invoices</h2>
 
 <button (click)="createInvoice()">Create Invoice</button>
 
-<br><br>
-
-<h3>Add Item</h3>
-
-<input [(ngModel)]="selectedInvoiceId" placeholder="Invoice ID" type="number">
-<input [(ngModel)]="productId" placeholder="Product ID" type="number">
-<input [(ngModel)]="quantity" placeholder="Quantity" type="number">
-
-<button (click)="addItem()">Add Item</button>
-
-<br><br>
-
 <table border="1">
   <tr>
+    <th>ID</th>
     <th>Number</th>
     <th>Status</th>
+    <th>Actions</th>
   </tr>
 
-   <tr *ngFor="let i of invoices">
-      <td>{{ i.number }}</td>
-      <td>{{ i.status }}</td>
-      <td>
-        <button (click)="closeInvoice(i.id)">Close</button>
-      </td>
-    </tr>
+  <tr *ngFor="let invoice of invoices">
+    <td>{{ invoice.id }}</td>
+    <td>{{ invoice.number }}</td>
+    <td>{{ invoice.status }}</td>
+    <td>
+      <button
+      (click)="closeInvoice(invoice)">
+        {{ loadingInvoiceId === invoice.id  ? 'Printing...' : 'Print' }}
+      </button>
+    </td>
+  </tr>
 </table>

@@ -1,12 +1,12 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f6f8;
+  background-color: #0A2536;
   margin: 0;
   padding: 20px;
 }
 
 h2, h3 {
-  color: #333;
+  color: #fff;
 }
 
 button {
@@ -54,7 +54,7 @@ tr:hover {
 }
 
 .card {
-  background-color: white;
+  background-color: #00111C;
   padding: 16px;
   margin-bottom: 20px;
   border-radius: 8px;

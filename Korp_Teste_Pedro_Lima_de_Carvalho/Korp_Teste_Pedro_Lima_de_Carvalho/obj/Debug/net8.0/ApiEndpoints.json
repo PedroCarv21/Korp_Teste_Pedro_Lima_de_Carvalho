@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product, Korp_Teste_Pedro_Lima_de_Carvalho, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product, ProductService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -139,7 +139,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Korp_Teste_Pedro_Lima_de_Carvalho.WeatherForecast, Korp_Teste_Pedro_Lima_de_Carvalho, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Korp_Teste_Pedro_Lima_de_Carvalho.WeatherForecast, ProductService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
