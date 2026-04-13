@@ -34,11 +34,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  background-color: white;
+  background-color: #B3D6E8;
 }
 
 th {
-  background-color: #1976d2;
+  background-color: #00111C;
   color: white;
   padding: 8px;
   text-align: left;
@@ -46,11 +46,12 @@ th {
 
 td {
   padding: 8px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #426B80;
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color: #12465F;
+  color: white;
 }
 
 .card {

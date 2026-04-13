@@ -2,6 +2,7 @@
 
 <table border="1">
   <tr>
+    <th>ID</th>
     <th>Code</th>
     <th>Description</th>
     <th>Stock</th>
@@ -9,6 +10,7 @@
   </tr>
 
   <tr *ngFor="let p of products">
+    <td>{{ p.id }}</td>
     <td>{{ p.code }}</td>
     <td>{{ p.description }}</td>
     <td>{{ p.stock }}</td>

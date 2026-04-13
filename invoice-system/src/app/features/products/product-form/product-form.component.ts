@@ -55,7 +55,11 @@ export class ProductFormComponent {
           window.location.reload();
         },
         error: (err) => {
-          alert(err.error);
+          if (err.status === 0) {
+            alert('Product service is not working');
+          } else {
+            alert(err.error || 'Unexpected error');
+          }
         }
       });
 

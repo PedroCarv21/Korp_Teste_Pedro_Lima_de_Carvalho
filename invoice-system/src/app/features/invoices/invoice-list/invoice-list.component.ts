@@ -24,14 +24,28 @@ export class InvoiceListComponent implements OnInit {
   }
 
   loadInvoices() {
-    this.invoiceService.getAll().subscribe(data => {
-      this.invoices = data;
+    this.invoiceService.getAll().subscribe({
+      next: (data) => {
+        this.invoices = data;
+      },
+      error: (err) => {
+        console.error('Failed to load invoices', err);
+      }
     });
   }
 
   createInvoice() {
-    this.invoiceService.create().subscribe(() => {
-      this.loadInvoices();
+    this.invoiceService.create().subscribe({
+      next: () => {
+        this.loadInvoices();
+      },
+      error: (err) => {
+        if (err.status === 0) {
+          alert('Invoice service is not working');
+        } else {
+          alert(err.error || 'Unexpected error');
+        }
+      }
     });
   }
 
@@ -53,8 +67,11 @@ export class InvoiceListComponent implements OnInit {
         window.location.reload();
       },
       error: (err) => {
-        const message = err.error || 'Unexpected error';
-        alert(message);
+        if (err.status === 0) {
+          alert('Invoice service is not working');
+        } else {
+          alert(err.error || 'Unexpected error');
+        }
       }
     });
   }
@@ -77,7 +94,11 @@ export class InvoiceListComponent implements OnInit {
       },
       error: (err) => {
         this.loadingInvoiceId = null;
-        alert(err.error);
+        if (err.status === 0) {
+          alert('Invoice service is not working');
+        } else {
+          alert(err.error || 'Unexpected error');
+        }
       }
     });
   }
