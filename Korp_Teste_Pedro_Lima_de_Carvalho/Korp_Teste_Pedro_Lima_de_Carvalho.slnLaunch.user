@@ -3,11 +3,11 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "Korp_Teste_Pedro_Lima_de_Carvalho\\ProductService.csproj",
+        "Path": "BillingService\\BillingService.csproj",
         "Action": "Start"
       },
       {
-        "Path": "BillingService\\BillingService.csproj",
+        "Path": "ProductService\\ProductService.csproj",
         "Action": "Start"
       }
     ]

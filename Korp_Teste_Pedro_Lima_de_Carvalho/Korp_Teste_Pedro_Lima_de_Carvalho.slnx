@@ -1,4 +1,4 @@
 <Solution>
   <Project Path="BillingService/BillingService.csproj" Id="255768bb-07c5-4565-955b-f895c6869b2e" />
-  <Project Path="Korp_Teste_Pedro_Lima_de_Carvalho/ProductService.csproj" />
+  <Project Path="ProductService/ProductService.csproj" />
 </Solution>
