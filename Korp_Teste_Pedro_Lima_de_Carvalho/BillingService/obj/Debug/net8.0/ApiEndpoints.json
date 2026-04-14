@@ -104,6 +104,22 @@
   },
   {
     "ContainingType": "BillingService.Controllers.InvoicesController",
+    "Method": "GetItems",
+    "RelativePath": "api/Invoices/{id}/items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BillingService.Controllers.InvoicesController",
     "Method": "UpdateItem",
     "RelativePath": "api/Invoices/{invoiceId}/items/{itemId}",
     "HttpMethod": "PUT",

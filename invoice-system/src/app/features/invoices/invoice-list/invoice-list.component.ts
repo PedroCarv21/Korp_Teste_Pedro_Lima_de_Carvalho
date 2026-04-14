@@ -16,6 +16,9 @@ export class InvoiceListComponent implements OnInit {
   productId!: number;
   quantity!: number;
   invoices: Invoice[] = [];
+  searchInvoiceId!: number;
+  items: any[] = [];
+  editingItem: any = null;
 
   constructor(private invoiceService: InvoiceService) {}
 
@@ -103,6 +106,45 @@ export class InvoiceListComponent implements OnInit {
     });
   }
 
+  searchItems() {
+    this.invoiceService.getItems(this.searchInvoiceId).subscribe({
+      next: (data) => {
+        this.items = data;
+      },
+      error: (err) => {
+        alert(err.error || 'Error loading items');
+      }
+    });
+  }
 
+  deleteItem(itemId: number) {
+    this.invoiceService.removeItem(this.searchInvoiceId, itemId).subscribe({
+      next: () => {
+        alert('Item removed!');
+        this.searchItems();
+      },
+      error: (err) => {
+        alert(err.error);
+      }
+    });
+  }
+
+  editItem(item: any) {
+    const newQuantity = prompt('New quantity:', item.quantity);
+
+    if (!newQuantity) return;
+
+    this.invoiceService.updateItem(this.searchInvoiceId, item.id, {
+      quantity: Number(newQuantity)
+    }).subscribe({
+      next: () => {
+        alert('Item updated!');
+        this.searchItems();
+      },
+      error: (err) => {
+        alert(err.error);
+      }
+    });
+  }
 
 }

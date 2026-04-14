@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product, ProductService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProductService.Models.Product, ProductService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -29,13 +29,13 @@
     "Parameters": [
       {
         "Name": "product",
-        "Type": "Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product",
+        "Type": "ProductService.Models.Product",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product",
+        "Type": "ProductService.Models.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product",
+        "Type": "ProductService.Models.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -86,7 +86,7 @@
       },
       {
         "Name": "product",
-        "Type": "Korp_Teste_Pedro_Lima_de_Carvalho.Models.Product",
+        "Type": "ProductService.Models.Product",
         "IsRequired": true
       }
     ],
@@ -123,7 +123,7 @@
       },
       {
         "Name": "request",
-        "Type": "Korp_Teste_Pedro_Lima_de_Carvalho.Requests.DecreaseStockRequest",
+        "Type": "ProductService.Requests.DecreaseStockRequest",
         "IsRequired": true
       }
     ],

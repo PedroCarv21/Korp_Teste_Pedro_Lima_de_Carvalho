@@ -30,6 +30,10 @@ export class InvoiceService {
     return this.http.get<Invoice[]>(this.apiUrl);
   }
 
+  getItems(invoiceId: number) {
+    return this.http.get<any[]>(`${this.apiUrl}/${invoiceId}/items`);
+  }
+
   create(): Observable<Invoice> {
     return this.http.post<Invoice>(this.apiUrl, {});
   }
@@ -40,5 +44,13 @@ export class InvoiceService {
 
   close(invoiceId: number) {
     return this.http.post(`${this.apiUrl}/${invoiceId}/close`, {});
+  }
+
+  removeItem(invoiceId: number, itemId: number) {
+    return this.http.delete(`${this.apiUrl}/${invoiceId}/items/${itemId}`);
+  }
+
+  updateItem(invoiceId: number, itemId: number, request: any) {
+    return this.http.put(`${this.apiUrl}/${invoiceId}/items/${itemId}`, request);
   }
 }

@@ -129,6 +129,19 @@ namespace BillingService.Controllers
             return Ok(invoice);
         }
 
+        [HttpGet("{id}/items")]
+        public async Task<IActionResult> GetItems(int id)
+        {
+            var invoice = await _context.Invoices
+                .Include(i => i.Items)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (invoice == null)
+                return NotFound("Invoice not found");
+
+            return Ok(invoice.Items);
+        }
+
         [HttpPut("{invoiceId}/items/{itemId}")]
         public async Task<IActionResult> UpdateItem(int invoiceId, int itemId, UpdateItemRequest request)
         {
