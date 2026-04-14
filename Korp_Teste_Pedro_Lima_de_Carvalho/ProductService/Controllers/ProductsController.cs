@@ -1,10 +1,10 @@
-﻿using Korp_Teste_Pedro_Lima_de_Carvalho.Data;
-using Korp_Teste_Pedro_Lima_de_Carvalho.Models;
-using Korp_Teste_Pedro_Lima_de_Carvalho.Requests;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProductService.Data;
+using ProductService.Models;
+using ProductService.Requests;
 
-namespace Korp_Teste_Pedro_Lima_de_Carvalho.Controllers
+namespace ProductService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

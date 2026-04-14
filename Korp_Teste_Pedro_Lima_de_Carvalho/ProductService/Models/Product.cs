@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Korp_Teste_Pedro_Lima_de_Carvalho.Models
+namespace ProductService.Models
 {
     [Index(nameof(Code), IsUnique = true)]
     public class Product

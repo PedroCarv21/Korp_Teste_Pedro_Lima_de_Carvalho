@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "ContainingType": "ProductService.Controllers.ProductsController",
     "Method": "GetProducts",
     "RelativePath": "api/Products",
     "HttpMethod": "GET",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "ContainingType": "ProductService.Controllers.ProductsController",
     "Method": "CreateProduct",
     "RelativePath": "api/Products",
     "HttpMethod": "POST",
@@ -46,7 +46,7 @@
     ]
   },
   {
-    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "ContainingType": "ProductService.Controllers.ProductsController",
     "Method": "GetProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
@@ -72,7 +72,7 @@
     ]
   },
   {
-    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "ContainingType": "ProductService.Controllers.ProductsController",
     "Method": "UpdateProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "PUT",
@@ -93,7 +93,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "ContainingType": "ProductService.Controllers.ProductsController",
     "Method": "DeleteProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "DELETE",
@@ -109,7 +109,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Korp_Teste_Pedro_Lima_de_Carvalho.Controllers.ProductsController",
+    "ContainingType": "ProductService.Controllers.ProductsController",
     "Method": "DecreaseStock",
     "RelativePath": "api/Products/{id}/decrease",
     "HttpMethod": "PUT",

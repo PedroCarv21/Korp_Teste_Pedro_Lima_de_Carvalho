@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Korp_Teste_Pedro_Lima_de_Carvalho.Models;
+using ProductService.Models;
 
-namespace Korp_Teste_Pedro_Lima_de_Carvalho.Data
+namespace ProductService.Data
 {
     public class AppDbContext : DbContext
     {

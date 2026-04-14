@@ -1,5 +1,5 @@
-using Korp_Teste_Pedro_Lima_de_Carvalho.Data;
 using Microsoft.EntityFrameworkCore;
+using ProductService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

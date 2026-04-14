@@ -1,4 +1,4 @@
-﻿namespace Korp_Teste_Pedro_Lima_de_Carvalho.Requests
+﻿namespace ProductService.Requests
 {
     public class DecreaseStockRequest
     {
